@@ -29,7 +29,8 @@ public class Main {
     };
 
     public static void main(String[] args) {
-        GradeBook gb = new GradeBook();
+        System.out.println("Java Grade Book");
+        GradeBook gb = new GradeBook("Parallel Computing");
 
         Thread th = new Thread(new GradeBookManager("Lector", gb));
         Thread th1 = new Thread(new GradeBookManager("Assistant 1", gb));

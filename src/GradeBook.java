@@ -1,11 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class GradeBook {
+    public final ReentrantLock lock = new ReentrantLock();
     private final List<StudentWork> workList = new ArrayList<>();
+    private final String disciplineName;
 
-    public GradeBook() {
+    public GradeBook(String disciplineName) {
+        this.disciplineName = disciplineName;
     }
 
     public synchronized void addStudentWork(StudentWork work) {
@@ -35,7 +39,7 @@ public class GradeBook {
     }
 
     public synchronized void printGrades() {
-        System.out.println("\nList of student works in GradeBook:");
+        System.out.println("\nList of student works in GradeBook for discipline: " + disciplineName);
         for (StudentWork work : this.workList) {
             work.printGrades();
         }

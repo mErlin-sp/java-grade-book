@@ -1,9 +1,12 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class StudentWork {
     private final String name;
     private final Map<Student, Grade> grades = new HashMap<>();
+
+    public final ReentrantLock lock = new ReentrantLock();
 
     public StudentWork(String name) {
         this.name = name;
@@ -26,9 +29,9 @@ public class StudentWork {
     }
 
     public void printGrades() {
-        System.out.println("\nList of student grades for work: " + this.name + ".");
+        System.out.println("\nList of student grades for work: " + this.name);
         for (Student s : this.grades.keySet()) {
-            System.out.println("Student: " + s.name() + ". Grade: " + this.grades.get(s));
+            System.out.println("Student: " + s.name() + ". Group: " + s.group() + ". Grade: " + this.grades.get(s));
         }
     }
 }
